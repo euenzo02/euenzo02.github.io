@@ -14,26 +14,27 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// ===============================
-// CARRINHO
-// ===============================
 let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+
 
 function salvarCarrinho() {
     localStorage.setItem("carrinho", JSON.stringify(carrinho));
 }
+
 
 function atualizarContador() {
     const contador = document.getElementById("contador");
     if (contador) contador.innerText = carrinho.length;
 }
 
+
 window.adicionarProduto = function(nome, preco) {
     carrinho.push({ nome, preco });
     salvarCarrinho();
     atualizarContador();
-    alert("Produto adicionado!");
+    alert("Produto adicionado ao carrinho!");
 };
+
 
 window.removerProduto = function(index) {
     carrinho.splice(index, 1);
@@ -48,18 +49,24 @@ function mostrarCarrinho() {
     const totalElemento = document.getElementById("total");
     const botaoFinalizar = document.querySelector(".finalizar");
 
-    if (!container) return;
+    if (!container || !totalElemento || !botaoFinalizar) return;
 
     container.innerHTML = "";
     let total = 0;
+
+    if (carrinho.length === 0) {
+        container.innerHTML = "<p>Seu carrinho está vazio.</p>";
+        totalElemento.innerText = "R$ 0.00";
+        return;
+    }
 
     carrinho.forEach((item, index) => {
         total += item.preco;
 
         container.innerHTML += `
-            <div>
-                ${item.nome} - R$ ${item.preco.toFixed(2)}
-                <button onclick="removerProduto(${index})">X</button>
+            <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                <span>${item.nome} - R$ ${item.preco.toFixed(2)}</span>
+                <button onclick="removerProduto(${index})" style="background:#c1440e; color:white; border:none; padding:4px 8px; cursor:pointer;">X</button>
             </div>
         `;
     });
@@ -74,7 +81,10 @@ function mostrarCarrinho() {
         }
 
         const nomeCliente = prompt("Digite seu nome:");
-        if (!nomeCliente) return;
+        if (!nomeCliente) {
+            alert("Nome é obrigatório!");
+            return;
+        }
 
         try {
             await addDoc(collection(db, "pedidos"), {
@@ -87,21 +97,23 @@ function mostrarCarrinho() {
             alert("Pedido salvo com sucesso!");
 
         } catch (e) {
-            alert("Erro ao salvar pedido.");
+            alert("Erro ao salvar pedido no banco.");
+            return;
         }
 
-        // WhatsApp
-        let mensagem = `Olá, meu nome é ${nomeCliente}.%0A`;
-        mensagem += `Pedido:%0A%0A`;
+        let mensagem = `Olá, meu nome é ${nomeCliente}.\n\n`;
+        mensagem += `Pedido:\n\n`;
 
         carrinho.forEach(item => {
-            mensagem += `• ${item.nome} - R$ ${item.preco.toFixed(2)}%0A`;
+            mensagem += `• ${item.nome} - R$ ${item.preco.toFixed(2)}\n`;
         });
 
-        mensagem += `%0ATotal: R$ ${total.toFixed(2)}`;
+        mensagem += `\nTotal: R$ ${total.toFixed(2)}`;
 
-        const numero = "5512997227154";
-        window.open(`https://wa.me/${numero}?text=${mensagem}`);
+        const numero = "5512997227154"; 
+        const link = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+
+        window.location.href = link;
 
         carrinho = [];
         salvarCarrinho();
