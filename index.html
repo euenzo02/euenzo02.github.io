@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trufameli</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>🍫 Trufameli</h1>
+    <a href="carrinho.html" class="carrinho-link">
+        🛒 Carrinho (<span id="contador">0</span>)
+    </a>
+</header>
+
+<section class="produtos">
+
+    <div class="card">
+        <h2>Trufa de Ninho com Nutella</h2>
+        <div class="preco">R$ 4,50</div>
+        <button onclick="adicionarProduto('Trufa de Ninho com Nutella', 4.50)">
+            Adicionar
+        </button>
+    </div>
+
+    <div class="card">
+        <h2>Trufa de Brigadeiro</h2>
+        <div class="preco">R$ 3,50</div>
+        <button onclick="adicionarProduto('Trufa de Brigadeiro', 3.50)">
+            Adicionar
+        </button>
+    </div>
+
+</section>
+
+<script type="module" src="script.js"></script>
+</body>
+</html>
