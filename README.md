@@ -1,2 +1,2 @@
 # euenzo02.github.io
-um dite que vai servir para varias coisas.
+um site que vai servir para varias coisas.
