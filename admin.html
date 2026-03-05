@@ -1,38 +1,124 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel Admin</title>
 
-<title>Painel Admin - Trufameli</title>
+<style>
 
-<link rel="stylesheet" href="style.css">
+body{
+font-family: Arial;
+background:#f4f4f4;
+padding:30px;
+}
+
+h2{
+margin-bottom:20px;
+}
+
+input{
+display:block;
+margin-bottom:10px;
+padding:10px;
+width:300px;
+}
+
+button{
+padding:10px 15px;
+background:#000;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+button:hover{
+background:#333;
+}
+
+#painel{
+margin-top:30px;
+}
+
+.produtoAdmin{
+background:white;
+padding:15px;
+margin-top:10px;
+border-radius:6px;
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.produtoAdmin img{
+border-radius:5px;
+}
+
+</style>
 
 </head>
 
 <body>
 
-<header>
+<!-- LOGIN -->
 
-<h1>📊 Painel de Pedidos</h1>
+<div id="login">
 
-<a href="index.html">Voltar ao site</a>
+<h2>Login Administrador</h2>
 
-</header>
+<input id="email" placeholder="Email">
+<input id="senha" type="password" placeholder="Senha">
+
+<button onclick="loginAdmin()">
+Entrar
+</button>
+
+</div>
 
 
-<section class="carrinho-container">
+<!-- PAINEL ADMIN -->
 
-<h2>Pedidos Recebidos</h2>
+<div id="painel" style="display:none;">
 
-<div id="lista-pedidos"></div>
+<h2>Painel Administrativo</h2>
 
-</section>
+<button onclick="logoutAdmin()">
+Sair
+</button>
 
-<script type="module" src="admin.js"></script>
+
+<h3>Adicionar Produto</h3>
+
+<input id="nome" placeholder="Nome do produto">
+
+<input id="preco" placeholder="Preço">
+
+<input id="imagem" placeholder="URL da imagem">
+
+<button onclick="adicionarProduto()">
+Adicionar Produto
+</button>
+
+
+<h3>Produtos cadastrados</h3>
+
+<div id="listaProdutos"></div>
+
+</div>
+
+
+<!-- FIREBASE -->
+
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+
+
+<!-- JS ADMIN -->
+
+<script src="admin.js"></script>
 
 </body>
-
 </html>
