@@ -1,84 +1,163 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-
-import {
-getFirestore,
-collection,
-getDocs,
-query,
-orderBy
-}
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-
+// ===============================
+// CONFIG FIREBASE
+// ===============================
 const firebaseConfig = {
-
-apiKey: "AIzaSyBodc6ohUL5Mjs14zDJ3-8uDfELgZuxnBU",
-
-authDomain: "trufameli.firebaseapp.com",
-
-projectId: "trufameli",
-
-storageBucket: "trufameli.firebasestorage.app",
-
-messagingSenderId: "320780304917",
-
-appId: "1:320780304917:web:5c4a313437f6dd73f0441c"
-
+  apiKey: "SUA_API_KEY",
+  authDomain: "SEU_PROJETO.firebaseapp.com",
+  projectId: "SEU_PROJETO_ID",
+  storageBucket: "SEU_PROJETO.appspot.com",
+  messagingSenderId: "SEU_ID",
+  appId: "SEU_APP_ID"
 };
 
+// Inicializar Firebase
+firebase.initializeApp(firebaseConfig);
 
-const app = initializeApp(firebaseConfig);
-
-const db = getFirestore(app);
-
-
-async function carregarPedidos(){
-
-const container = document.getElementById("lista-pedidos");
-
-container.innerHTML = "Carregando pedidos...";
+// serviços
+const auth = firebase.auth();
+const db = firebase.firestore();
 
 
-const q = query(collection(db,"pedidos"), orderBy("criadoEm","desc"));
+// ===============================
+// LOGIN ADMIN
+// ===============================
 
-const querySnapshot = await getDocs(q);
+function loginAdmin() {
 
+  const email = document.getElementById("email").value;
+  const senha = document.getElementById("senha").value;
 
-container.innerHTML = "";
+  auth.signInWithEmailAndPassword(email, senha)
+  .then(() => {
 
+    document.getElementById("login").style.display = "none";
+    document.getElementById("painel").style.display = "block";
 
-querySnapshot.forEach((doc)=>{
+    carregarProdutos();
 
-const pedido = doc.data();
+  })
+  .catch((error) => {
 
-let produtosHTML = "";
+    alert("Erro no login: " + error.message);
 
-pedido.produtos.forEach(produto=>{
-
-produtosHTML += `<li>${produto.nome} - R$ ${produto.preco}</li>`;
-
-});
-
-
-container.innerHTML += `
-
-<div style="background:white;padding:20px;margin-bottom:20px;border-radius:10px">
-
-<h3>Cliente: ${pedido.nome}</h3>
-
-<ul>
-${produtosHTML}
-</ul>
-
-<strong>Total: R$ ${pedido.total}</strong>
-
-</div>
-
-`;
-
-});
+  });
 
 }
 
 
-carregarPedidos();
+// ===============================
+// LOGOUT
+// ===============================
+
+function logoutAdmin(){
+
+  auth.signOut().then(()=>{
+
+    document.getElementById("login").style.display = "block";
+    document.getElementById("painel").style.display = "none";
+
+  });
+
+}
+
+
+// ===============================
+// VERIFICAR LOGIN
+// ===============================
+
+auth.onAuthStateChanged((user)=>{
+
+  if(user){
+
+    document.getElementById("login").style.display = "none";
+    document.getElementById("painel").style.display = "block";
+
+    carregarProdutos();
+
+  }
+
+});
+
+
+// ===============================
+// ADICIONAR PRODUTO
+// ===============================
+
+function adicionarProduto(){
+
+  const nome = document.getElementById("nome").value;
+  const preco = document.getElementById("preco").value;
+  const imagem = document.getElementById("imagem").value;
+
+  db.collection("produtos").add({
+
+    nome: nome,
+    preco: preco,
+    imagem: imagem
+
+  })
+  .then(()=>{
+
+    alert("Produto adicionado!");
+    carregarProdutos();
+
+  });
+
+}
+
+
+// ===============================
+// CARREGAR PRODUTOS
+// ===============================
+
+function carregarProdutos(){
+
+  const lista = document.getElementById("listaProdutos");
+
+  lista.innerHTML = "";
+
+  db.collection("produtos").get().then((snapshot)=>{
+
+    snapshot.forEach((doc)=>{
+
+      const produto = doc.data();
+
+      lista.innerHTML += `
+
+      <div class="produtoAdmin">
+
+        <img src="${produto.imagem}" width="80">
+
+        <h3>${produto.nome}</h3>
+
+        <p>R$ ${produto.preco}</p>
+
+        <button onclick="deletarProduto('${doc.id}')">
+        Excluir
+        </button>
+
+      </div>
+
+      `;
+
+    });
+
+  });
+
+}
+
+
+// ===============================
+// DELETAR PRODUTO
+// ===============================
+
+function deletarProduto(id){
+
+  db.collection("produtos").doc(id).delete()
+  .then(()=>{
+
+    carregarProdutos();
+
+  });
+
+}
