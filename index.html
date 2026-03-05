@@ -1,87 +1,213 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Trufameli</title>
+
 <link rel="stylesheet" href="style.css">
+
+<!-- Fonte moderna -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
 
 <header>
-    <h1>🍫 Trufameli</h1>
-    <a href="carrinho.html" class="carrinho-link">
-        🛒 Carrinho (<span id="contador">0</span>)
-    </a>
+
+<h1>🍫 Trufameli</h1>
+
+<a href="carrinho.html" class="carrinho-link">
+🛒 Carrinho (<span id="contador">0</span>)
+</a>
+
 </header>
 
-<section class="produtos">
 
-    <div class="card">
-        <img src="imagens/ninho.jpeg" class="imagem-produto">
-        <h2>Trufa de Ninho com Nutella</h2>
-        <div class="preco">R$ 4,50</div>
-        <button onclick="adicionarProduto('Trufa de Ninho com Nutella', 4.50)">
-            Adicionar
-        </button>
-    </div>
+<!-- BANNER -->
+<section class="banner">
 
-    <div class="card">
-        <img src="imagens/morango.jpeg" class="imagem-produto">
-        <h2>Trufa de Morango com Ninho</h2>
-        <div class="preco">R$ 4,50</div>
-        <button onclick="adicionarProduto('Trufa de Morango com Ninho', 4.50)">
-            Adicionar
-        </button>
-    </div>
+<h2>Trufas Artesanais</h2>
 
-    <div class="card">
-        <img src="imagens/brigadeiro.jpeg" class="imagem-produto">
-        <h2>Trufa de Brigadeiro</h2>
-        <div class="preco">R$ 3,50</div>
-        <button onclick="adicionarProduto('Trufa de Brigadeiro', 3.50)">
-            Adicionar
-        </button>
-    </div>
-
-    <div class="card">
-        <img src="imagens/beijinho.jpeg" class="imagem-produto">
-        <h2>Trufa de Beijinho</h2>
-        <div class="preco">R$ 3,50</div>
-        <button onclick="adicionarProduto('Trufa de Beijinho', 3.50)">
-            Adicionar
-        </button>
-    </div>
-
-    <div class="card">
-        <img src="imagens/oreo.jpeg" class="imagem-produto">
-        <h2>Trufa de Oreo</h2>
-        <div class="preco">R$ 3,50</div>
-        <button onclick="adicionarProduto('Trufa de Oreo', 3.50)">
-            Adicionar
-        </button>
-    </div>
-
-    <div class="card">
-        <img src="imagens/limão.jpeg" class="imagem-produto">
-        <h2>Trufa de Limão</h2>
-        <div class="preco">R$ 3,50</div>
-        <button onclick="adicionarProduto('Trufa de Limão', 3.50)">
-            Adicionar
-        </button>
-    </div>
-
-    <div class="card">
-        <img src="imagens/pistache.jpeg" class="imagem-produto">
-        <h2>Trufa de Pistache</h2>
-        <div class="preco">R$ 3,50</div>
-        <button onclick="adicionarProduto('Trufa de Pistache', 3.50)">
-            Adicionar
-        </button>
-    </div>
+<p>Feitas com ingredientes de qualidade e muito carinho 🍫</p>
 
 </section>
 
+
+<!-- PRODUTOS -->
+<section class="produtos">
+
+<div class="card">
+
+<img src="imagens/ninho.jpeg" class="imagem-produto">
+
+<h2>Trufa de Ninho com Nutella</h2>
+
+<p class="descricao">
+Chocolate ao leite recheado com creme de Ninho e Nutella
+</p>
+
+<div class="preco">R$ 4,50</div>
+
+<button onclick="adicionarProduto('Trufa de Ninho com Nutella', 4.50)">
+Adicionar ao Carrinho
+</button>
+
+</div>
+
+
+<div class="card">
+
+<img src="imagens/morango.jpeg" class="imagem-produto">
+
+<h2>Trufa de Morango com Ninho</h2>
+
+<p class="descricao">
+Recheio cremoso de morango com leite Ninho
+</p>
+
+<div class="preco">R$ 4,50</div>
+
+<button onclick="adicionarProduto('Trufa de Morango com Ninho', 4.50)">
+Adicionar ao Carrinho
+</button>
+
+</div>
+
+
+<div class="card">
+
+<img src="imagens/brigadeiro.jpeg" class="imagem-produto">
+
+<h2>Trufa de Brigadeiro</h2>
+
+<p class="descricao">
+Clássico brigadeiro cremoso com chocolate ao leite
+</p>
+
+<div class="preco">R$ 3,50</div>
+
+<button onclick="adicionarProduto('Trufa de Brigadeiro', 3.50)">
+Adicionar ao Carrinho
+</button>
+
+</div>
+
+
+<div class="card">
+
+<img src="imagens/beijinho.jpeg" class="imagem-produto">
+
+<h2>Trufa de Beijinho</h2>
+
+<p class="descricao">
+Chocolate ao leite com recheio de coco cremoso
+</p>
+
+<div class="preco">R$ 3,50</div>
+
+<button onclick="adicionarProduto('Trufa de Beijinho', 3.50)">
+Adicionar ao Carrinho
+</button>
+
+</div>
+
+
+<div class="card">
+
+<img src="imagens/oreo.jpeg" class="imagem-produto">
+
+<h2>Trufa de Oreo</h2>
+
+<p class="descricao">
+Recheio cremoso com pedaços de Oreo
+</p>
+
+<div class="preco">R$ 3,50</div>
+
+<button onclick="adicionarProduto('Trufa de Oreo', 3.50)">
+Adicionar ao Carrinho
+</button>
+
+</div>
+
+
+<div class="card">
+
+<img src="imagens/limão.jpeg" class="imagem-produto">
+
+<h2>Trufa de Limão</h2>
+
+<p class="descricao">
+Chocolate ao leite com recheio cítrico de limão
+</p>
+
+<div class="preco">R$ 3,50</div>
+
+<button onclick="adicionarProduto('Trufa de Limão', 3.50)">
+Adicionar ao Carrinho
+</button>
+
+</div>
+
+
+<div class="card">
+
+<img src="imagens/pistache.jpeg" class="imagem-produto">
+
+<h2>Trufa de Pistache</h2>
+
+<p class="descricao">
+Chocolate ao leite com creme especial de pistache
+</p>
+
+<div class="preco">R$ 3,50</div>
+
+<button onclick="adicionarProduto('Trufa de Pistache', 3.50)">
+Adicionar ao Carrinho
+</button>
+
+</div>
+
+</section>
+
+
+<!-- SOBRE -->
+<section class="sobre">
+
+<h2>Sobre a Trufameli</h2>
+
+<p>
+A Trufameli nasceu com a ideia de levar trufas artesanais deliciosas
+para todos. Cada doce é feito com carinho, ingredientes de qualidade
+e muito amor.
+</p>
+
+</section>
+
+
+<!-- RODAPÉ -->
+<footer>
+
+<p>© 2026 Trufameli</p>
+
+<p>📍 São José dos Campos</p>
+
+<p>📱 Pedidos pelo WhatsApp</p>
+
+</footer>
+
+
+<!-- BOTÃO WHATSAPP -->
+<a href="https://wa.me/5512997227154" class="whatsapp" target="_blank">
+💬
+</a>
+
+
 <script type="module" src="script.js"></script>
+
 </body>
 </html>
