@@ -2,12 +2,12 @@
 // CONFIG FIREBASE
 // ===============================
 const firebaseConfig = {
-  apiKey: "SUA_API_KEY",
-  authDomain: "SEU_PROJETO.firebaseapp.com",
-  projectId: "SEU_PROJETO_ID",
-  storageBucket: "SEU_PROJETO.appspot.com",
-  messagingSenderId: "SEU_ID",
-  appId: "SEU_APP_ID"
+  apiKey: "AIzaSyBodc6ohUL5Mjs14zDJ3-8uDfELgZuxnBU",
+  authDomain: "trufameli.firebaseapp.com",
+  projectId: "trufameli",
+  storageBucket: "trufameli.firebasestorage.app",
+  messagingSenderId: "320780304917",
+  appId: "1:320780304917:web:5c4a313437f6dd73f0441c"
 };
 
 // Inicializar Firebase
