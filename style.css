@@ -213,3 +213,30 @@ font-size:24px;
 }
 
 }
+
+.carrinho-container h2{
+margin-bottom:20px;
+color:#5a2d1c;
+}
+
+hr{
+margin:20px 0;
+border:none;
+border-top:1px solid #ddd;
+}
+
+.finalizar{
+background:#25D366;
+font-size:16px;
+font-weight:bold;
+margin-top:15px;
+}
+
+.finalizar:hover{
+background:#1ebe5d;
+}
+
+.voltar-link{
+text-decoration:none;
+font-weight:bold;
+}
