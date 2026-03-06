@@ -4,127 +4,120 @@ padding:0;
 box-sizing:border-box;
 }
 
-body{
+html{
+scroll-behavior:smooth;
+}
 
+body{
 font-family:'Poppins',sans-serif;
 background:#F4E3D7;
 padding:30px;
-
+max-width:1200px;
+margin:auto;
 }
 
 /* HEADER */
 
 header{
-
 display:flex;
 justify-content:space-between;
 align-items:center;
 margin-bottom:30px;
-
 }
 
 header h1{
-
 color:#8C4A2F;
 font-weight:600;
-
 }
 
 .carrinho-link{
-
 text-decoration:none;
 background:#8C4A2F;
 color:white;
-padding:10px 15px;
+padding:10px 16px;
 border-radius:8px;
+font-weight:500;
+transition:0.3s;
+}
 
+.carrinho-link:hover{
+background:#6f3824;
+transform:scale(1.05);
 }
 
 /* BANNER */
 
 .banner{
-
-background:linear-gradient(45deg,#C97B63,#8C4A2F);
+background:linear-gradient(135deg,#C97B63,#8C4A2F);
 color:white;
 padding:40px;
 border-radius:15px;
 margin-bottom:40px;
 text-align:center;
-
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
 }
 
 .banner h2{
-
 font-size:32px;
 margin-bottom:10px;
-
 }
 
 /* PRODUTOS */
 
 .produtos{
-
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:25px;
-
 }
 
 .card{
-
 background:white;
 padding:20px;
 border-radius:15px;
-box-shadow:0 10px 25px rgba(0,0,0,0.1);
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
 text-align:center;
-transition:0.3s;
-
+transition:all 0.3s ease;
 }
 
 .card:hover{
-
-transform:translateY(-5px);
-
+transform:translateY(-8px) scale(1.02);
+box-shadow:0 15px 35px rgba(0,0,0,0.15);
 }
 
 .imagem-produto{
-
 width:100%;
 height:200px;
 object-fit:cover;
 border-radius:10px;
 margin-bottom:10px;
+transition:0.3s;
+}
 
+.card:hover .imagem-produto{
+transform:scale(1.05);
 }
 
 .card h2{
-
 font-size:18px;
 margin-bottom:5px;
-
 }
 
 .descricao{
-
 font-size:14px;
 color:#666;
 margin-bottom:10px;
-
 }
 
 .preco{
-
 font-size:18px;
 font-weight:600;
 color:#C97B63;
 margin-bottom:10px;
-
 }
 
 /* BOTÃO */
 
 button{
-
 background:#C97B63;
 color:white;
 border:none;
@@ -133,85 +126,22 @@ width:100%;
 cursor:pointer;
 border-radius:8px;
 font-size:15px;
-transition:0.3s;
-
+font-weight:500;
+transition:all 0.3s ease;
 }
 
 button:hover{
-
 background:#B76A54;
-transform:scale(1.03);
-
+transform:scale(1.05);
 }
 
 /* CARRINHO */
 
 .carrinho-container{
-
 background:white;
-padding:20px;
-border-radius:10px;
-
-}
-
-/* SOBRE */
-
-.sobre{
-
-margin-top:60px;
-background:white;
-padding:30px;
-border-radius:15px;
-text-align:center;
-
-}
-
-.sobre h2{
-
-margin-bottom:10px;
-color:#8C4A2F;
-
-}
-
-/* RODAPÉ */
-
-footer{
-
-margin-top:40px;
-text-align:center;
-color:#555;
-
-}
-
-/* BOTÃO WHATSAPP */
-
-.whatsapp{
-
-position:fixed;
-bottom:20px;
-right:20px;
-background:#25D366;
-color:white;
-font-size:28px;
-padding:15px;
-border-radius:50%;
-text-decoration:none;
-box-shadow:0 5px 15px rgba(0,0,0,0.3);
-
-}
-
-/* RESPONSIVO */
-
-@media (max-width:600px){
-
-body{
-padding:20px;
-}
-
-.banner h2{
-font-size:24px;
-}
-
+padding:25px;
+border-radius:12px;
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
 }
 
 .carrinho-container h2{
@@ -236,7 +166,74 @@ margin-top:15px;
 background:#1ebe5d;
 }
 
+/* SOBRE */
+
+.sobre{
+margin-top:60px;
+background:white;
+padding:30px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
+}
+
+.sobre h2{
+margin-bottom:10px;
+color:#8C4A2F;
+}
+
+/* RODAPÉ */
+
+footer{
+margin-top:60px;
+text-align:center;
+color:#555;
+font-size:14px;
+padding:20px;
+}
+
+/* BOTÃO WHATSAPP */
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+font-size:28px;
+padding:15px;
+border-radius:50%;
+text-decoration:none;
+box-shadow:0 8px 20px rgba(0,0,0,0.3);
+transition:0.3s;
+}
+
+.whatsapp:hover{
+transform:scale(1.1);
+}
+
+/* LINKS */
+
 .voltar-link{
 text-decoration:none;
 font-weight:bold;
+color:#8C4A2F;
+}
+
+/* RESPONSIVO */
+
+@media (max-width:600px){
+
+body{
+padding:20px;
+}
+
+.banner h2{
+font-size:24px;
+}
+
+.produtos{
+grid-template-columns:1fr;
+}
+
 }
