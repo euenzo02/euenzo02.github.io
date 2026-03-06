@@ -1,48 +1,39 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 
-import {
+import { 
 getAuth,
 signInWithEmailAndPassword
-}
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 const firebaseConfig = {
 
-apiKey: "AIzaSyBodc6ohUL5Mjs14zDJ3-8uDfELgZuxnBU",
-
-authDomain: "trufameli.firebaseapp.com",
-
-projectId: "trufameli",
-
-storageBucket: "trufameli.firebasestorage.app",
-
-messagingSenderId: "320780304917",
-
-appId: "1:320780304917:web:5c4a313437f6dd73f0441c"
+apiKey: "SUA_API_KEY",
+authDomain: "SEU_AUTH_DOMAIN",
+projectId: "SEU_PROJECT_ID"
 
 };
 
 const app = initializeApp(firebaseConfig);
-
 const auth = getAuth(app);
 
-window.login = function(){
+
+window.login = async function(){
 
 const email = document.getElementById("email").value;
 const senha = document.getElementById("senha").value;
 
-signInWithEmailAndPassword(auth,email,senha)
+try{
 
-.then(()=>{
+await signInWithEmailAndPassword(auth,email,senha);
 
-window.location.href="admin.html";
+window.location.href = "admin.html";
 
-})
+}
 
-.catch(()=>{
+catch{
 
 document.getElementById("erro").innerText="Login inválido";
 
-});
+}
 
 }
