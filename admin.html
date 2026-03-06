@@ -1,124 +1,76 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
+
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Painel Admin</title>
 
-<style>
-
-body{
-font-family: Arial;
-background:#f4f4f4;
-padding:30px;
-}
-
-h2{
-margin-bottom:20px;
-}
-
-input{
-display:block;
-margin-bottom:10px;
-padding:10px;
-width:300px;
-}
-
-button{
-padding:10px 15px;
-background:#000;
-color:white;
-border:none;
-cursor:pointer;
-}
-
-button:hover{
-background:#333;
-}
-
-#painel{
-margin-top:30px;
-}
-
-.produtoAdmin{
-background:white;
-padding:15px;
-margin-top:10px;
-border-radius:6px;
-display:flex;
-align-items:center;
-gap:15px;
-}
-
-.produtoAdmin img{
-border-radius:5px;
-}
-
-</style>
+<link rel="stylesheet" href="admin.css">
 
 </head>
 
 <body>
 
-<!-- LOGIN -->
+<div class="sidebar">
 
-<div id="login">
+<h2>🍫 Trufameli</h2>
 
-<h2>Login Administrador</h2>
-
-<input id="email" placeholder="Email">
-<input id="senha" type="password" placeholder="Senha">
-
-<button onclick="loginAdmin()">
-Entrar
-</button>
+<a href="#">📊 Dashboard</a>
+<a href="#produtos">📦 Produtos</a>
+<a href="#pedidos">🧾 Pedidos</a>
+<a href="#" onclick="logout()">🚪 Sair</a>
 
 </div>
 
 
-<!-- PAINEL ADMIN -->
+<div class="main">
 
-<div id="painel" style="display:none;">
-
-<h2>Painel Administrativo</h2>
-
-<button onclick="logoutAdmin()">
-Sair
-</button>
+<h1>Painel Administrativo</h1>
 
 
-<h3>Adicionar Produto</h3>
+<div class="cards">
+
+<div class="card-stat">
+<h3 id="total-produtos">0</h3>
+<p>Produtos</p>
+</div>
+
+<div class="card-stat">
+<h3 id="total-pedidos">0</h3>
+<p>Pedidos</p>
+</div>
+
+<div class="card-stat">
+<h3 id="total-vendas">R$0</h3>
+<p>Faturamento</p>
+</div>
+
+</div>
+
+
+<h2 id="produtos">Adicionar Produto</h2>
 
 <input id="nome" placeholder="Nome do produto">
-
 <input id="preco" placeholder="Preço">
-
 <input id="imagem" placeholder="URL da imagem">
 
-<button onclick="adicionarProduto()">
-Adicionar Produto
-</button>
+<button onclick="adicionarProduto()">Adicionar Produto</button>
 
 
-<h3>Produtos cadastrados</h3>
+<h2>Produtos cadastrados</h2>
 
-<div id="listaProdutos"></div>
+<div id="lista-produtos"></div>
+
+
+<h2 id="pedidos">Pedidos</h2>
+
+<div id="lista-pedidos"></div>
 
 </div>
 
-
-<!-- FIREBASE -->
-
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
-
-
-<!-- JS ADMIN -->
-
-<script src="admin.js"></script>
+<script type="module" src="admin.js"></script>
 
 </body>
 </html>
