@@ -25,6 +25,11 @@ function salvarCarrinho() {
     localStorage.setItem("carrinho", JSON.stringify(carrinho));
 }
 
+
+// =============================
+// CONTADOR DO CARRINHO
+// =============================
+
 function atualizarContador() {
 
     const contador = document.getElementById("contador");
@@ -54,12 +59,35 @@ window.adicionarProduto = function(nome, preco) {
 
 
 // =============================
-// REMOVER PRODUTO
+// REMOVER PRODUTO POR INDEX
 // =============================
 
 window.removerProduto = function(index) {
 
     carrinho.splice(index, 1);
+
+    salvarCarrinho();
+
+    atualizarContador();
+
+    mostrarCarrinho();
+
+};
+
+
+// =============================
+// REMOVER POR NOME (remove 1 unidade)
+// =============================
+
+window.removerProdutoNome = function(nome) {
+
+    const index = carrinho.findIndex(p => p.nome === nome);
+
+    if (index !== -1) {
+
+        carrinho.splice(index,1);
+
+    }
 
     salvarCarrinho();
 
@@ -96,24 +124,56 @@ function mostrarCarrinho() {
 
     }
 
-    carrinho.forEach((item, index) => {
+    // =============================
+    // AGRUPAR PRODUTOS
+    // =============================
 
-        total += item.preco;
+    const produtosAgrupados = {};
+
+    carrinho.forEach(item => {
+
+        if (!produtosAgrupados[item.nome]) {
+
+            produtosAgrupados[item.nome] = {
+                preco: item.preco,
+                quantidade: 0
+            };
+
+        }
+
+        produtosAgrupados[item.nome].quantidade++;
+
+    });
+
+
+    // =============================
+    // MOSTRAR PRODUTOS AGRUPADOS
+    // =============================
+
+    for (let nome in produtosAgrupados) {
+
+        const produto = produtosAgrupados[nome];
+
+        const subtotal = produto.preco * produto.quantidade;
+
+        total += subtotal;
 
         container.innerHTML += `
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
-                
-                <span>${item.nome} - R$ ${item.preco.toFixed(2)}</span>
 
-                <button onclick="removerProduto(${index})"
+                <span>
+                ${nome} x${produto.quantidade} - R$ ${subtotal.toFixed(2)}
+                </span>
+
+                <button onclick="removerProdutoNome('${nome}')"
                 style="background:#c1440e;color:white;border:none;padding:5px 10px;border-radius:5px;cursor:pointer;">
-                X
+                -
                 </button>
 
             </div>
         `;
 
-    });
+    }
 
     totalElemento.innerText = "R$ " + total.toFixed(2);
 
@@ -177,6 +237,28 @@ function mostrarCarrinho() {
 
 
         // =============================
+        // AGRUPAR PRODUTOS PARA WHATSAPP
+        // =============================
+
+        const agrupadoWhats = {};
+
+        carrinho.forEach(item => {
+
+            if (!agrupadoWhats[item.nome]) {
+
+                agrupadoWhats[item.nome] = {
+                    preco: item.preco,
+                    quantidade: 0
+                };
+
+            }
+
+            agrupadoWhats[item.nome].quantidade++;
+
+        });
+
+
+        // =============================
         // MENSAGEM WHATSAPP
         // =============================
 
@@ -186,11 +268,15 @@ function mostrarCarrinho() {
 
         mensagem += `🛒 Pedido:\n`;
 
-        carrinho.forEach(item => {
+        for (let nome in agrupadoWhats) {
 
-            mensagem += `• ${item.nome} - R$ ${item.preco.toFixed(2)}\n`;
+            const produto = agrupadoWhats[nome];
 
-        });
+            const subtotal = produto.preco * produto.quantidade;
+
+            mensagem += `• ${nome} x${produto.quantidade} - R$ ${subtotal.toFixed(2)}\n`;
+
+        }
 
         mensagem += `\n💰 Total: R$ ${total.toFixed(2)}`;
 
